@@ -17,3 +17,19 @@ def user(request):
 def index(request):
     #return HttpResponse("Este es el index")
     return render(request,"index.html")
+
+
+def saludar(request, apellido):
+    return HttpResponse(f"Hola {apellido}")
+
+
+def suma(request,num1,num2):
+    return HttpResponse(f"resultado: {num1+num2}")
+
+def encuesta_form(request):
+    return render(request,"formulario_encuesta.html")
+
+def procesar_encuesta(request):
+    nombre = request.POST.get("name")
+    tiene_hambre = request.POST.get("hambre")
+    return HttpResponse(f"Su nombre es: <b>{nombre}</b> y <b>{tiene_hambre}</b> tiene hambre!!")
