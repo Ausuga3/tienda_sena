@@ -1,0 +1,16 @@
+
+    <p>
+        La suma de {{ num1 }}+ {{ num2 }} es :
+        
+        {% if respuesta < 20 %} 
+            <h1 style="color: red;">{{ respuesta }}</h1>
+
+        {% elif respuesta >= 20 and respuesta <= 50 %}    
+        <h1 style="color:blue">{{ respuesta }}</h1>
+
+        {% else %}
+        <h1 style="color:green">{{ respuesta }}</h1>
+        {% endif %} 
+        
+                    
+    </p>

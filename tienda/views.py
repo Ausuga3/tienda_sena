@@ -33,3 +33,19 @@ def procesar_encuesta(request):
     nombre = request.POST.get("name")
     tiene_hambre = request.POST.get("hambre")
     return HttpResponse(f"Su nombre es: <b>{nombre}</b> y <b>{tiene_hambre}</b> tiene hambre!!")
+
+def sumar_formulrio(request):
+    if request.method == "POST":
+        n1=int(request.POST.get("num1"))
+        n2=int(request.POST.get("num2"))
+        # return HttpResponse(f"La suma de {n1} + {n2} es <strong>{n1+n2}</strong>") 
+        contexto = {
+            "num1":n1,
+            "num2":n2,
+            "respuesta": n1+n2
+        }
+        return render(request,"sumar_respuesta.html", contexto)
+    
+
+    else:
+        return render(request,"sumar_formulrio.html")
