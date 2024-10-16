@@ -4,4 +4,10 @@ from django.contrib import admin
 
 from .models import *
 
-admin.site.register(Producto)
+
+@admin.register(Producto)
+class ProductoAdmin(admin.ModelAdmin):
+    list_display = ['id', 'cod', 'nombre', 'precio', 'stock', 'categoria']  
+    search_fields = ['nombre', 'cod']
+    list_filter = ['categoria']
+    list_editable = ['stock', 'categoria']
