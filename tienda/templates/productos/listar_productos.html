@@ -1,1 +1,18 @@
-{{ data }}
+<table class="table">
+    <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>precio</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for i in data %}
+            <tr>
+                <td>{{ i.nombre }}</td>
+                <td>{{ i.precio }}</td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>
