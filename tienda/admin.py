@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+# python3 /manage.py createsuperuser
 # Register your models here.
 
 from .models import *
@@ -11,3 +11,13 @@ class ProductoAdmin(admin.ModelAdmin):
     search_fields = ['nombre', 'cod']
     list_filter = ['categoria']
     list_editable = ['stock', 'categoria']
+
+
+@admin.register(Factura)
+class FacturaAdmin(admin.ModelAdmin):
+    list_display = ['id', 'fecha', 'cliente', 'num_factura', 'producto']  
+    search_fields = ['num_factura']
+    list_filter = ['producto', 'num_factura']
+    list_editable = ['fecha', 'producto']
+
+

@@ -13,4 +13,7 @@ urlpatterns =[
     path("encuesta_form/", views.encuesta_form, name="encuesta_form"),
     path("procesar_encuesta/", views.procesar_encuesta, name="procesar_encuesta"),
     path("sumar_formulrio/", views.sumar_formulrio, name="sumar_formulrio"),
+    #CRUD Productos
+    path("productos/", views.productos, name="productos"),
+
 ]

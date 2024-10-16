@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import *
 
 # Create your views here.
 
@@ -49,3 +50,17 @@ def sumar_formulrio(request):
 
     else:
         return render(request,"sumar_formulrio.html")
+    
+
+
+#CRUD de Productos
+
+def productos(request):
+    #select * from
+    #all(Todos), filter(Alguno), get(Uno solo)
+    q = Producto.objects.all()
+    contexto = {
+        "data": q
+        }
+
+    return render(request, "productos/listar_productos.html", contexto)
