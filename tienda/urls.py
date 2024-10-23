@@ -15,5 +15,6 @@ urlpatterns =[
     path("sumar_formulrio/", views.sumar_formulrio, name="sumar_formulrio"),
     #CRUD Productos
     path("productos/", views.productos, name="productos"),
+    path("eliminar_producto/<int:id_producto>/", views.eliminar_producto, name="eliminar_producto"),
 
 ]
