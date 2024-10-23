@@ -1,18 +1,25 @@
-<table class="table">
-    <thead>
-        <tr>
-            <td>Nombre</td>
-            <td>precio</td>
-        </tr>
-    </thead>
-    <tbody>
+{% extends 'base.html' %}
 
-        {% for i in data %}
+{% block titulo %} Productos {% endblock %}
+
+{% block contenido %}
+    <h1>productos</h1>
+    <table class="table table-dark table-striped">
+        <thead>
             <tr>
-                <td>{{ i.nombre }}</td>
-                <td>{{ i.precio }}</td>
+                <th>Nombre</th>
+                <th>precio</th>
             </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for i in data %}
+                <tr>
+                    <td>{{ i.nombre }}</td>
+                    <td>{{ i.precio }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
 
-    </tbody>
-  </table>
+

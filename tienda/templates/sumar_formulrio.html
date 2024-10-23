@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %} Suma Formulario {% endblock %}
+
+{% block contenido %}
     <form action="" method="POST">
         {% csrf_token %}
         <label>Num 1:</label><br>
@@ -15,5 +13,5 @@
 
         <button type="submit">Sumar</button>
     </form>
-</body>
-</html>
+{% endblock %}
+

@@ -1,6 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
 
+{% block titulo %}Sumar{% endblock %}
+
+{% block contenido %}
     <p>
-        La suma de {{ num1 }}+ {{ num2 }} es :
+        La suma de {{ num1 }} + {{ num2 }} es :
         
         {% if respuesta < 20 %} 
             <h1 style="color: red;">{{ respuesta }}</h1>
@@ -14,3 +19,4 @@
         
                     
     </p>
+{% endblock %}
