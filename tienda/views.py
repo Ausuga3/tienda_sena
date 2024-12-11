@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
+from django.contrib import messages
 from django.db import IntegrityError
 
 # Create your views here.
@@ -69,14 +70,70 @@ def productos(request):
 
 def eliminar_producto(request, id_producto):
     try:
+
         q = Producto.objects.get(pk = id_producto)
         q.delete()
-        return HttpResponse("Producto eliminado correctamente...")
+        messages.success(request, "Producto eliminado correctamente...")
     
     except IntegrityError:
-        return HttpResponse(f"Error el producto esta relacionado a otra tabla")
+        messages.warning(request, "Error el producto esta relacionado a otra tabla")
     except Producto.DoesNotExist:
-        return HttpResponse("El producto no existe")
+        messages.error(request, "El producto no existe")       
     except Exception as e:
-        return HttpResponse(f"Error: {e}")
+        messages.error(request, f"Error: {e}")
 
+    return redirect("productos")
+
+
+def agregar_producto(request):
+    if request.method == "POST":
+        cod = request.POST.get('cod')
+        nombre = request.POST.get('nombre')
+        precio = request.POST.get('precio')
+        stock = request.POST.get('stock')
+        CATEGORIAS = request.POST.get('categoria')
+        try:
+            q = Producto(
+                cod = cod,
+                nombre = nombre,
+                precio = precio,
+                stock = stock,
+                categoria = CATEGORIAS
+            )
+            q.save()
+            messages.success(request, "El producto se ha guardado correctamente!!")
+        except Exception as e:
+            messages.error(request, f"Error {e}!")
+        return redirect("productos")    
+    else:
+        return render(request,"productos/crear_productos.html")
+        
+    
+
+def editar_producto(request, id_producto):
+    if request.method=='POST':
+        #procesar datos
+        if request.method == "POST":
+            q = Producto.objects.get(pk = id_producto)
+            cod = request.POST.get('cod')
+            nombre = request.POST.get('nombre')
+            precio = request.POST.get('precio')
+            stock = request.POST.get('stock')
+            CATEGORIAS = request.POST.get('categoria')
+            try:
+                
+                q.cod = cod
+                q.nombre = nombre
+                q.precio = precio
+                q.stock = stock
+                q.categoria = CATEGORIAS
+                q.save()
+                messages.success(request, "El producto se ha actualizado correctamente!!")
+                
+            except Exception as e:
+                messages.error(request, f"Error {e}!")
+            return redirect("productos")
+    else:
+        # mostrar el formulario enviano datos del producto consultado
+        q = Producto.objects.get(pk = id_producto)
+        return render(request,"productos/crear_productos.html", {"dato": q})
